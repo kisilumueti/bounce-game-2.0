@@ -10,7 +10,7 @@ A responsive neon arcade runner with a browser-first game client and a portable 
 | Gameplay engine | C++20 | Deterministic movement, jump physics and simulation state |
 | Portable utility | C11 | Deterministic xorshift random-number generator |
 | WebAssembly bridge | C++ / Emscripten | Exposes the engine through a stable C ABI |
-| Score analysis | Python 3 | Validates and summarizes exported score JSON |
+| Score analysis | Python 3 | Validates and summarizes exported score JSON |\n| Batch audit | COBOL | Processes name,score CSV ledgers in a traditional batch workflow |
 | Build and tests | CMake, CTest, GitHub Actions | Native compilation, regression checks and WASM artifact build |
 
 ## Play
@@ -48,7 +48,7 @@ This version does **not** upload player data. It stores a display name and game 
 
     python tools/score_audit.py neon-bounce-scores.json
 
-A local leaderboard is not a global leaderboard. For fair cross-device competition, add an authenticated API, persistent database, server-authoritative scoring, request throttling, replay/physics validation and abuse monitoring. Never trust a raw score submitted by a browser as proof of a legitimate run.
+The optional COBOL utility reads a CSV with one player name and integer score per row (name,score). Compile with a COBOL compiler such as GnuCOBOL: `cobc -x -free tools/score_audit.cob -o score_audit` and run it against that CSV.\n\nA local leaderboard is not a global leaderboard. For fair cross-device competition, add an authenticated API, persistent database, server-authoritative scoring, request throttling, replay/physics validation and abuse monitoring. Never trust a raw score submitted by a browser as proof of a legitimate run.
 
 ## Repository layout
 
