@@ -1,0 +1,3 @@
+#include "bounce/engine.hpp"
+#include <cassert>
+int main() { bounce::Engine game; assert(game.state().grounded); assert(game.jump()); assert(!game.state().grounded); assert(!game.jump()); for(int i=0;i<120;++i) game.step(1.0/60.0); assert(game.state().grounded); assert(game.state().jumps==1); assert(game.state().score>0.0); game.reset(); assert(game.state().score==0.0); assert(game.state().jumps==0); game.step(-1.0); assert(game.state().elapsed==0.0); return 0; }
