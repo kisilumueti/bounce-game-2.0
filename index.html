@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070b16">
+  <meta name="description" content="Neon Bounce 2.0 — a precision arcade challenge. Jump, chain combos and beat your personal best.">
+  <title>Neon Bounce 2.0 — Arcade Protocol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Neon Bounce home"><span class="brand-mark">N</span><span>NEON<span class="brand-light">/</span>BOUNCE</span><sup>2.0</sup></a>
+      <div class="top-meta"><span class="live-dot"></span> ARCADE SYSTEM ONLINE <span class="version">BUILD 2.0.6</span></div>
+      <button class="icon-button" id="soundToggle" aria-label="Toggle sound" title="Toggle sound">♫</button>
+    </header>
+    <section class="intro">
+      <div><p class="eyebrow">INFINITE RUNNER · PRECISION EDITION</p><h1>Defy gravity.<br><span>Own the rhythm.</span></h1><p class="intro-copy">One jump at a time. Chain clean landings, collect energy and push your run beyond the ordinary.</p></div>
+      <div class="intro-stat"><span class="stat-label">YOUR PERSONAL BEST</span><strong id="heroBest">000000</strong><span class="stat-foot">LOCAL RECORD</span></div>
+    </section>
+    <section class="game-layout">
+      <div class="game-column">
+        <div class="hud">
+          <div class="hud-item"><span>SCORE</span><strong id="score">000000</strong></div>
+          <div class="hud-item"><span>BEST</span><strong id="best">000000</strong></div>
+          <div class="hud-item"><span>COMBO</span><strong id="combo">×1</strong></div>
+          <div class="hud-item"><span>LEVEL</span><strong id="level">01</strong></div>
+        </div>
+        <div class="arena" id="arena">
+          <canvas id="gameCanvas" width="1100" height="520" aria-label="Neon Bounce game area"></canvas>
+          <div class="overlay" id="startOverlay">
+            <div class="orbital"><span></span><i></i></div>
+            <p class="eyebrow">READY WHEN YOU ARE</p><h2>Make your<br><em>move.</em></h2>
+            <p>Press SPACE or tap the arena to launch.</p>
+            <button class="primary-button" id="startButton">START RUN <span>↗</span></button>
+          </div>
+          <div class="pause-overlay hidden" id="pauseOverlay"><strong>RUN PAUSED</strong><span>Press P or resume below</span><button class="primary-button" id="resumeButton">RESUME</button></div>
+          <div class="game-toast" id="toast" aria-live="polite"></div>
+          <div class="arena-bottom"><span>SPACE / ↑ / W — JUMP</span><span>P — PAUSE</span><span>R — RESTART</span></div>
+        </div>
+        <div class="game-actions"><button class="secondary-button" id="restartButton">↻ RESTART RUN</button><div class="energy-wrap"><span>ENERGY</span><div class="energy-track"><i id="energyBar"></i></div><b id="energyValue">100%</b></div><span class="run-status" id="runStatus">STANDBY</span></div>
+      </div>
+      <aside class="side-panel">
+        <div class="panel-card player-card"><div class="panel-heading"><span>PLAYER ID</span><span class="tiny-dot"></span></div><div class="player-row"><div class="avatar" id="avatar">P</div><div><strong id="playerName">PLAYER ONE</strong><button class="text-button" id="editName">EDIT ID ↗</button></div></div><div class="divider"></div><div class="mini-stats"><div><span>RUNS</span><b id="runs">0</b></div><div><span>COLLECTED</span><b id="collected">0</b></div></div></div>
+        <div class="panel-card leaderboard-card"><div class="panel-heading"><span>LOCAL LEADERBOARD</span><span class="panel-index">TOP 05</span></div><ol id="leaderboard" class="leaderboard"><li class="empty-board">Your first run is waiting.</li></ol><p class="privacy-note">Scores are stored on this device only.</p></div>
+        <div class="panel-card mission-card"><div class="panel-heading"><span>FIELD NOTES</span><span class="panel-index">01 / 03</span></div><div class="mission"><span class="mission-icon">↗</span><div><b>Stay airborne</b><small>Time jumps to clear incoming barriers.</small></div></div><div class="mission"><span class="mission-icon">◇</span><div><b>Collect fragments</b><small>Energy fragments add bonus points.</small></div></div><div class="mission"><span class="mission-icon">∞</span><div><b>Build your streak</b><small>Clean consecutive jumps raise combo.</small></div></div></div>
+      </aside>
+    </section>
+    <footer><span>NEON/BOUNCE <b>2.0</b> · BUILT FOR THE NEXT RUN</span><div><button class="text-button" id="exportScores">EXPORT SCORES ↓</button><span class="footer-separator">·</span><span>NO ACCOUNT REQUIRED</span></div></footer>
+  </main>
+  <dialog id="nameDialog"><form method="dialog" id="nameForm"><p class="eyebrow">PLAYER CONFIGURATION</p><h2>Set your callsign.</h2><label for="nameInput">DISPLAY NAME</label><input id="nameInput" maxlength="18" minlength="2" autocomplete="nickname" placeholder="ENTER CALLSIGN" required><div class="dialog-actions"><button class="secondary-button" value="cancel">CANCEL</button><button class="primary-button" id="saveName" value="save">SAVE ID ↗</button></div></form></dialog>
+  <script src="game.js" defer></script>
+</body>
+</html>
